@@ -139,7 +139,7 @@ func main() {
 				}
 				return
 			}
-			slog.Debug("received message", "message", fmt.Sprintf("%#v", message))
+			slog.Debug("received ws message", "message", fmt.Sprintf("%#v", message))
 			messages <- message
 		}
 	}()
@@ -171,6 +171,7 @@ func main() {
 			return
 		case message := <-messages:
 			if message.Event == "message" {
+				slog.Info("received ntfy message", "messageId", message.Id)
 				notify(message)
 			}
 		}
