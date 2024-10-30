@@ -28,7 +28,7 @@ var (
 	Config = config{
 		Endpoint:    "ntfy.sh:443",
 		Topics:      "ntfy_notify_announcement,ntfy_notify_release",
-		UserAgent:   "ntfy-notify/"+Version,
+		UserAgent:   "ntfy-notify/" + Version,
 		KeepAlive:   300,
 		FetchMissed: true,
 	}

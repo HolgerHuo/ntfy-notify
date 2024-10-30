@@ -37,16 +37,23 @@ var (
 )
 
 type Message struct {
-	Id       string      `json:"id"`
-	Time     json.Number `json:"time"`
-	Event    string      `json:"event"`
-	Topic    string      `json:"topic"`
-	Message  string      `json:"message"`
-	Title    string      `json:"title"`
-	Priority int         `json:"priority"`
-	Tags     []string    `json:"tags"`
-	Click    string      `json:"click"`
-	Icon     string      `json:"icon"`
+	Id         string      `json:"id"`
+	Time       json.Number `json:"time"`
+	Event      string      `json:"event"`
+	Topic      string      `json:"topic"`
+	Message    string      `json:"message"`
+	Title      string      `json:"title"`
+	Priority   int         `json:"priority"`
+	Tags       []string    `json:"tags"`
+	Click      string      `json:"click"`
+	Attachment Attachment  `json:"attachment"`
+}
+
+type Attachment struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
+	Size int    `json:"size"`
+	Url  string `json:"url"`
 }
 
 func main() {
@@ -71,6 +78,8 @@ func main() {
 		return
 	}
 	slog.Debug("loaded config", "configFile", *configFile, "config", fmt.Sprintf("%#v", config.Config))
+
+	slog.Info("starting ntfy-notify")
 
 	var (
 		writeWait  = 3 * time.Second
@@ -148,6 +157,8 @@ func main() {
 		writeCache("lastOnline", &lastOnline)
 		writeCache("lastId", &lastId)
 	}()
+
+	slog.Info("started ntfy-notify")
 
 	for {
 		select {
