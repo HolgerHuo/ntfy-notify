@@ -133,8 +133,10 @@ func main() {
 			var message Message
 			err := c.ReadJSON(&message)
 			if err != nil {
-				slog.Error("cannot read ntfy message")
-				slog.Debug(fmt.Sprintf("%v", err), "message", fmt.Sprintf("%#v", message))
+				if websocket.IsUnexpectedCloseError(err, websocket.CloseNormalClosure) {
+					slog.Error("cannot read ntfy message")
+					slog.Debug(fmt.Sprintf("%v", err), "message", fmt.Sprintf("%#v", message))
+				}
 				return
 			}
 			slog.Debug("received message", "message", fmt.Sprintf("%#v", message))
