@@ -1,0 +1,20 @@
+version: 2
+
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+builds:
+  - binary: ntfy-notify
+    ldflags:
+      - "-extldflags=-static -s -w -X ntfy-notify/config.Version={{.Version}}"
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+archives:
+  - name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}"
+    format: tar.gz
+release:
+  prerelease: auto
