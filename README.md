@@ -11,9 +11,10 @@
 
 ## To-Dos
 
-- [] Click actions
-- [] Support icon and attachment
-- [] Detect Internet connectivity
+- [ ] Click actions
+- [ ] Support icon and attachment
+- [ ] Detect Internet connectivity
+- [ ] Filter notifications
 
 ## Usage
 

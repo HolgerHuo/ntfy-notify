@@ -46,6 +46,7 @@ type Message struct {
 	Priority   int         `json:"priority"`
 	Tags       []string    `json:"tags"`
 	Click      string      `json:"click"`
+	Icon       string      `json:"icon"`
 	Attachment Attachment  `json:"attachment"`
 }
 
