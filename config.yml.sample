@@ -1,0 +1,4 @@
+endpoint: ntfy.sh:443
+#username: ntfy_user
+#password: ntfy_password
+topics: ntfy_notify_announcement,ntfy_notify_release
